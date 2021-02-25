@@ -1,0 +1,17 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+article {
+	margin: 0 200px;
+}
+
+h1 {
+	text-align: center;
+ 	font-family: 'Limelight', cursive;
+}
+
+.thumbnail {
+	width: 250px;
+	height: auto;
+}

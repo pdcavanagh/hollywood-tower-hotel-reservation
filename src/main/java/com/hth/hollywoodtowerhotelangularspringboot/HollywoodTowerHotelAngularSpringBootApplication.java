@@ -12,6 +12,8 @@ public class HollywoodTowerHotelAngularSpringBootApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HollywoodTowerHotelAngularSpringBootApplication.class, args);
+		
+		System.out.println("Running app data: ");
 	}
 
 }

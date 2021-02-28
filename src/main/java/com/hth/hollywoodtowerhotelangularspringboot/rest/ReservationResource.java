@@ -2,6 +2,7 @@ package com.hth.hollywoodtowerhotelangularspringboot.rest;
 
 import java.time.LocalDate;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -53,9 +54,9 @@ public class ReservationResource {
 	public ResponseEntity<RoomEntity> getRoomById(
 			@PathVariable
 			Long roomId) {
-	
-		RoomEntity roomEntity = roomRepository.findById(roomId);
 		
+		RoomEntity roomEntity = roomRepository.findById(roomId).get();
+				
 		return new ResponseEntity<>(roomEntity, HttpStatus.OK);
 	}
 	

@@ -5,15 +5,15 @@ import org.springframework.core.convert.converter.Converter;
 import com.hth.hollywoodtowerhotelangularspringboot.entity.RoomEntity;
 import com.hth.hollywoodtowerhotelangularspringboot.model.Links;
 import com.hth.hollywoodtowerhotelangularspringboot.model.Self;
-import com.hth.hollywoodtowerhotelangularspringboot.model.response.ReservationResponse;
+import com.hth.hollywoodtowerhotelangularspringboot.model.response.ReservableRoomResponse;
 import com.hth.hollywoodtowerhotelangularspringboot.rest.ResourceConstants;
 
-public class RoomEntityToReservationResponseConverter implements Converter<RoomEntity, ReservationResponse>{
+public class RoomEntityToReservableRoomResponseConverter implements Converter<RoomEntity, ReservableRoomResponse>{
 
 	@Override
-	public ReservationResponse convert(RoomEntity source) {
+	public ReservableRoomResponse convert(RoomEntity source) {
 
-		ReservationResponse reservationResponse = new ReservationResponse();
+		ReservableRoomResponse reservationResponse = new ReservableRoomResponse();
 		reservationResponse.setRoomNumber(source.getRoomNumber());
 		reservationResponse.setPrice(Integer.valueOf(source.getPrice()));
 		

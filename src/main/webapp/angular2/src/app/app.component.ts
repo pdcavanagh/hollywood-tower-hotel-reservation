@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ReservationService } from './reservation.service';
+import { ReservationService, ReservationRequest } from './reservation.service';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +14,8 @@ export class AppComponent
 
 	rooms: Room[] = [];
 	roomSearchForm: FormGroup = new FormGroup({});
-	currentCheckinVal: string | undefined;
-	currentCheckoutVal: string | undefined;
+	currentCheckinVal: string = '';
+	currentCheckoutVal: string = '';
 	currentPrice: number = -1;
 	currentRoomNumber: number = -1;
 
@@ -26,11 +26,6 @@ export class AppComponent
 			roomNumber: new FormControl(''),
 		});
 		
-		this.rooms = [ new Room("127", "127", "250"),
-			new Room("128", "128", "275"),
-			new Room("129", "129", "300") 
-		];
-	
 		this.roomSearchForm.valueChanges.subscribe(form => {
 			this.currentCheckinVal = form.checkin;
 			this.currentCheckoutVal = form.checkout;
@@ -45,28 +40,20 @@ export class AppComponent
 			console.log(this.currentCheckoutVal);
 			console.log(this.currentRoomNumber);		
 		});
+		
+		this.rooms = [ new Room("127", "127", "250"),
+			new Room("128", "128", "275"),
+			new Room("129", "129", "300") 
+		];
 	}
-
 	
-//	onSubmit({value,valid}: {value:Roomsearch, valid:boolean} ) {
-//		this.getAll()
-//			.subscribe((rooms:Room[]) => this.rooms = { 
-//				rooms: rooms
-//				},
-//				err => {
-//					console.log(err);
-//				}
-//			);
-//	}
-//	
-//	reserveRoom(value:string) {
-//		console.log("Room reservation id: " + value);
-//	}
-	
-//	getAll() {
-//		return this.http.get(
-//			this.baseUrl + '/room/reservation/v1?checkin=2021-01-07&checkout=2021-01-14');
-//	}
+	createReservation() {
+		this.reservationService.createReservation(
+		new ReservationRequest(this.currentRoomNumber, this.currentCheckinVal, this.currentCheckoutVal, this.currentPrice)
+		).subscribe(postResult => 
+			console.log(postResult)
+		);
+	}
 
 }
 
